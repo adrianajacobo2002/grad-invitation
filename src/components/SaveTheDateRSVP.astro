@@ -1,0 +1,428 @@
+---
+/* Componente estático, toda la lógica va en el <script is:inline> */
+---
+
+<section class="std-page">
+  <div class="std-card">
+    <!-- Ícono birrete -->
+    <div class="std-icon-top">
+      <!-- Reemplaza este div por tu <img> de birrete -->
+      <div class="std-img-placeholder">IMG BIRRETE</div>
+    </div>
+
+    <!-- Texto principal -->
+    <h1 class="std-title">SAVE THE DATE</h1>
+
+    <p class="std-name">
+      Taylor Ebestele Ebodaghe
+      <!-- Cambia por tu nombre -->
+    </p>
+
+    <!-- Bloque de fecha -->
+    <div class="std-date-block">
+      <p class="std-month">DECEMBER</p>
+
+      <div class="std-date-row">
+        <span class="std-date-side">WEDNESDAY</span>
+        <span class="std-date-main">18</span>
+        <span class="std-date-side">AT 3 PM</span>
+      </div>
+
+      <p class="std-year">2024</p>
+    </div>
+
+    <!-- Icono central -->
+    <div class="std-icon-middle">
+      <!-- Reemplaza por tu insignia / símbolo -->
+      <div class="std-img-placeholder">IMG INSIGNIA</div>
+    </div>
+
+    <!-- Dirección -->
+    <p class="std-address">
+      7500 OSLER DRIVE, TOWSON,<br />
+      MD. 21286
+    </p>
+
+    <!-- Ilustraciones florales (placeholders) -->
+    <div class="std-flower std-flower-left">
+      <!-- Reemplaza por <img src="..." /> -->
+      <div class="std-img-placeholder">IMG FLOR IZQ</div>
+    </div>
+    <div class="std-flower std-flower-right">
+      <!-- Reemplaza por <img src="..." /> -->
+      <div class="std-img-placeholder">IMG FLOR DER</div>
+    </div>
+
+    <!-- Esquinas decorativas -->
+    <div class="std-corner std-corner-tl"></div>
+    <div class="std-corner std-corner-br"></div>
+
+    <!-- FORMULARIO RSVP -->
+    <div class="std-rsvp">
+      <h2 class="std-rsvp-title">Confirmar asistencia</h2>
+      <p class="std-rsvp-subtitle">
+        Por favor, completa la siguiente información para confirmar tu asistencia.
+      </p>
+
+      <form id="rsvp-form" class="std-form">
+        <div class="std-form-row">
+          <label for="name">Nombre completo</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            required
+            placeholder="Escribe tu nombre"
+          />
+        </div>
+
+        <div class="std-form-row">
+          <label for="email">Correo electrónico</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            placeholder="tucorreo@ejemplo.com"
+          />
+        </div>
+
+        <div class="std-form-row">
+          <label for="attendance">Asistencia</label>
+          <select id="attendance" name="attendance" required>
+            <option value="">Selecciona una opción</option>
+            <option value="Sí asistiré">Sí asistiré</option>
+            <option value="No podré asistir">No podré asistir</option>
+          </select>
+        </div>
+
+        <div class="std-form-row">
+          <label for="guests">Número de acompañantes</label>
+          <input
+            id="guests"
+            name="guests"
+            type="number"
+            min="0"
+            step="1"
+            value="0"
+          />
+        </div>
+
+        <div class="std-form-row">
+          <label for="message">Mensaje (opcional)</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="3"
+            placeholder="Alguna indicación especial, alergias, comentarios, etc."
+          ></textarea>
+        </div>
+
+        <button type="submit" class="std-btn">
+          Confirmar asistencia
+        </button>
+
+        <p id="rsvp-status" class="std-status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Tipografías similares al diseño original */
+  @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Great+Vibes&display=swap");
+
+  :root {
+    --std-bg: #e8e5e1;
+    --std-text: #111111;
+    --std-accent: #111111;
+    --std-border: #222222;
+  }
+
+  .std-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--std-bg);
+    padding: 2rem 1rem;
+  }
+
+  .std-card {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    background: transparent;
+    color: var(--std-text);
+    text-align: center;
+    padding: 3rem 2rem 4rem;
+    box-sizing: border-box;
+  }
+
+  .std-icon-top {
+    margin-bottom: 0.75rem;
+  }
+
+  .std-title {
+    font-family: "Playfair Display", serif;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    font-size: 2.2rem;
+    margin: 0.5rem 0 0.75rem;
+  }
+
+  .std-name {
+    font-family: "Great Vibes", cursive;
+    font-size: 2.5rem;
+    margin: 0 0 2rem;
+  }
+
+  .std-date-block {
+    margin-bottom: 1.5rem;
+  }
+
+  .std-month {
+    font-family: "Playfair Display", serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+
+  .std-date-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .std-date-side {
+    font-family: "Playfair Display", serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+
+  .std-date-main {
+    font-family: "Playfair Display", serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+  }
+
+  .std-year {
+    font-family: "Playfair Display", serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.15em;
+    margin-top: 0.25rem;
+  }
+
+  .std-icon-middle {
+    margin: 1rem 0 1.5rem;
+  }
+
+  .std-address {
+    font-family: "Playfair Display", serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.6;
+  }
+
+  .std-flower {
+    position: absolute;
+    bottom: 4rem;
+  }
+
+  .std-flower-left {
+    left: 1.5rem;
+  }
+
+  .std-flower-right {
+    right: 1.5rem;
+  }
+
+  .std-img-placeholder {
+    width: 80px;
+    height: 80px;
+    border: 1px dashed #777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.55rem;
+    text-transform: uppercase;
+  }
+
+  .std-icon-top .std-img-placeholder {
+    width: 60px;
+    height: 60px;
+  }
+
+  .std-icon-middle .std-img-placeholder {
+    width: 50px;
+    height: 50px;
+  }
+
+  .std-flower .std-img-placeholder {
+    width: 110px;
+    height: 110px;
+  }
+
+  .std-corner {
+    position: absolute;
+    border-color: var(--std-border);
+  }
+
+  .std-corner-tl {
+    top: 1.5rem;
+    left: 1.5rem;
+    width: 70px;
+    height: 70px;
+    border-top: 1px solid var(--std-border);
+    border-left: 1px solid var(--std-border);
+  }
+
+  .std-corner-br {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 70px;
+    height: 70px;
+    border-bottom: 1px solid var(--std-border);
+    border-right: 1px solid var(--std-border);
+  }
+
+  /* FORMULARIO */
+
+  .std-rsvp {
+    margin-top: 3rem;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+
+  .std-rsvp-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .std-rsvp-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .std-form {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .std-form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+  }
+
+  .std-form-row label {
+    font-family: "Playfair Display", serif;
+  }
+
+  .std-form-row input,
+  .std-form-row select,
+  .std-form-row textarea {
+    border: 1px solid #b3aea6;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 0.55rem 0.7rem;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    outline: none;
+  }
+
+  .std-form-row input:focus,
+  .std-form-row select:focus,
+  .std-form-row textarea:focus {
+    border-color: var(--std-accent);
+  }
+
+  .std-btn {
+    margin-top: 0.5rem;
+    align-self: flex-start;
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    border: 1px solid var(--std-accent);
+    background: transparent;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .std-btn:hover {
+    background: var(--std-accent);
+    color: #f5f5f5;
+  }
+
+  .std-status {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    min-height: 1.2em;
+  }
+
+  @media (max-width: 768px) {
+    .std-card {
+      padding: 2.5rem 1.25rem 3.5rem;
+    }
+
+    .std-flower-left {
+      left: 0.5rem;
+    }
+    .std-flower-right {
+      right: 0.5rem;
+    }
+
+    .std-flower .std-img-placeholder {
+      width: 90px;
+      height: 90px;
+    }
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("rsvp-form");
+    const statusEl = document.getElementById("rsvp-status");
+
+    if (!form) return;
+
+    const scriptURL = "https://script.google.com/macros/s/TU_SCRIPT_ID/exec";
+    // 👆 Reemplaza esto por la URL de despliegue web de tu Google Apps Script
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      statusEl.textContent = "Enviando respuesta...";
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(scriptURL, {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!response.ok) {
+          throw new Error("Respuesta no válida del servidor");
+        }
+
+        // Si tu script devuelve JSON, podrías hacer: const data = await response.json();
+        statusEl.textContent = "¡Gracias! Tu asistencia ha sido registrada.";
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent =
+          "Ocurrió un error al enviar tu respuesta. Intenta de nuevo más tarde.";
+      }
+    });
+  });
+</script>
